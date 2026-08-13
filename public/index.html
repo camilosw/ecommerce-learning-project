@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookstore Page - Your next read</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Site header -->
@@ -22,59 +23,59 @@
     <!-- Main content -->
     <main>
       <!-- Welcome section -->
-      <section aria-labelledby="welcome-title">
+      <section class="hero" aria-labelledby="welcome-title">
         <h2 id="welcome-title">Welcome to Bookstore Page</h2>
         <p>
           Discover books that will accompany you at every moment. Shipping
           nationwide.
         </p>
-        <a href="#">Browse full catalog</a>
+        <a class="btn" href="#">Browse full catalog</a>
       </section>
 
       <!-- Featured books -->
-      <section aria-labelledby="featured-title">
+      <section class="featured-books" aria-labelledby="featured-title">
         <h2 id="featured-title">Featured books</h2>
 
-        <ul>
+        <ul class="book-grid">
           <li>
-            <article>
+            <article class="book-card">
               <h3>One Hundred Years of Solitude</h3>
-              <p>Gabriel García Márquez</p>
-              <p>€19.95</p>
-              <a href="#">View details</a>
+              <p class="book-author">Gabriel García Márquez</p>
+              <p class="book-price">€19.95</p>
+              <a class="book-link" href="#">View details</a>
             </article>
           </li>
           <li>
-            <article>
+            <article class="book-card">
               <h3>The Name of the Wind</h3>
-              <p>Patrick Rothfuss</p>
-              <p>€22.50</p>
-              <a href="#">View details</a>
+              <p class="book-author">Patrick Rothfuss</p>
+              <p class="book-price">€22.50</p>
+              <a class="book-link" href="#">View details</a>
             </article>
           </li>
           <li>
-            <article>
+            <article class="book-card">
               <h3>1984</h3>
-              <p>George Orwell</p>
-              <p>€9.95</p>
-              <a href="#">View details</a>
+              <p class="book-author">George Orwell</p>
+              <p class="book-price">€9.95</p>
+              <a class="book-link" href="#">View details</a>
             </article>
           </li>
           <li>
-            <article>
+            <article class="book-card">
               <h3>Sapiens</h3>
-              <p>Yuval Noah Harari</p>
-              <p>€24.90</p>
-              <a href="#">View details</a>
+              <p class="book-author">Yuval Noah Harari</p>
+              <p class="book-price">€24.90</p>
+              <a class="book-link" href="#">View details</a>
             </article>
           </li>
         </ul>
       </section>
 
       <!-- Categories -->
-      <section aria-labelledby="categories-title">
+      <section class="categories" aria-labelledby="categories-title">
         <h2 id="categories-title">Browse by category</h2>
-        <ul>
+        <ul class="category-list">
           <li><a href="#">Fiction</a></li>
           <li><a href="#">Non-fiction</a></li>
           <li><a href="#">Science fiction and fantasy</a></li>
