@@ -56,12 +56,12 @@ each epic is closed.
 
 > What the student must build: the catalog home with semantic HTML, CSS, a basic responsive layout, and a visual identity.
 
-![Bookstore home page: header with navigation, welcome banner, featured books as cards, and category links](docs/screenshots/epic-1-home.png)
+![Bookstore home page: the store wordmark, a full-width blue banner with the store claim, a pink announcement bubble, four featured books shown as cover images with title, author and price, and the store's opening hours](docs/screenshots/epic-1-home.png)
 
 <details>
 <summary>Mobile view</summary>
 
-![Bookstore home page on a narrow mobile viewport, with the nav and book cards stacked in a single column](docs/screenshots/epic-1-home-mobile.png)
+![Bookstore home page on a narrow mobile viewport, with the wordmark centred and each book cover on a row of its own](docs/screenshots/epic-1-home-mobile.png)
 
 </details>
 

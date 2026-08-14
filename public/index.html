@@ -7,93 +7,130 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Site header -->
-    <header>
-      <h1>Bookstore Page</h1>
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">Catalog</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Cart (0)</a></li>
-        </ul>
-      </nav>
+    <!-- Site header: the store wordmark -->
+    <header class="site-header">
+      <div class="container">
+        <h1 class="logo">Bookstore Page</h1>
+      </div>
     </header>
 
     <!-- Main content -->
     <main>
-      <!-- Welcome section -->
+      <!-- Hero: full-width colour band with the store claim -->
       <section class="hero" aria-labelledby="welcome-title">
-        <h2 id="welcome-title">Welcome to Bookstore Page</h2>
-        <p>
-          Discover books that will accompany you at every moment. Shipping
-          nationwide.
-        </p>
-        <a class="btn" href="#">Browse full catalog</a>
+        <div class="container">
+          <h2 id="welcome-title">
+            Your mind travels with the best books — we are the bridge
+          </h2>
+        </div>
       </section>
+
+      <!-- Announcement: speech bubble pointing at the featured books -->
+      <aside class="promo" aria-label="Store announcement">
+        <p class="promo-bubble">
+          <span class="promo-badge" aria-hidden="true">&#9733;</span>
+          Free shipping on every order over &euro;30
+        </p>
+      </aside>
 
       <!-- Featured books -->
       <section class="featured-books" aria-labelledby="featured-title">
-        <h2 id="featured-title">Featured books</h2>
+        <div class="container">
+          <h2 id="featured-title">Featured books</h2>
 
-        <ul class="book-grid">
-          <li>
-            <article class="book-card">
-              <h3>One Hundred Years of Solitude</h3>
-              <p class="book-author">Gabriel García Márquez</p>
-              <p class="book-price">€19.95</p>
-              <a class="book-link" href="#">View details</a>
-            </article>
-          </li>
-          <li>
-            <article class="book-card">
-              <h3>The Name of the Wind</h3>
-              <p class="book-author">Patrick Rothfuss</p>
-              <p class="book-price">€22.50</p>
-              <a class="book-link" href="#">View details</a>
-            </article>
-          </li>
-          <li>
-            <article class="book-card">
-              <h3>1984</h3>
-              <p class="book-author">George Orwell</p>
-              <p class="book-price">€9.95</p>
-              <a class="book-link" href="#">View details</a>
-            </article>
-          </li>
-          <li>
-            <article class="book-card">
-              <h3>Sapiens</h3>
-              <p class="book-author">Yuval Noah Harari</p>
-              <p class="book-price">€24.90</p>
-              <a class="book-link" href="#">View details</a>
-            </article>
-          </li>
-        </ul>
+          <ul class="book-list">
+            <li>
+              <article class="book-card">
+                <a class="book-cover" href="#">
+                  <img
+                    src="https://picsum.photos/seed/solitude/400/600"
+                    alt="Cover of One Hundred Years of Solitude, by Gabriel García Márquez"
+                    width="400"
+                    height="600"
+                    loading="lazy"
+                  />
+                </a>
+                <h3 class="book-title">
+                  <a href="#">One Hundred Years of Solitude</a>
+                </h3>
+                <p class="book-author">Gabriel García Márquez</p>
+                <p class="book-price">&euro;19.95</p>
+              </article>
+            </li>
+            <li>
+              <article class="book-card">
+                <a class="book-cover" href="#">
+                  <img
+                    src="https://picsum.photos/seed/namewind/400/600"
+                    alt="Cover of The Name of the Wind, by Patrick Rothfuss"
+                    width="400"
+                    height="600"
+                    loading="lazy"
+                  />
+                </a>
+                <h3 class="book-title"><a href="#">The Name of the Wind</a></h3>
+                <p class="book-author">Patrick Rothfuss</p>
+                <p class="book-price">&euro;22.50</p>
+              </article>
+            </li>
+            <li>
+              <article class="book-card">
+                <a class="book-cover" href="#">
+                  <img
+                    src="https://picsum.photos/seed/nineteen84/400/600"
+                    alt="Cover of 1984, by George Orwell"
+                    width="400"
+                    height="600"
+                    loading="lazy"
+                  />
+                </a>
+                <h3 class="book-title"><a href="#">1984</a></h3>
+                <p class="book-author">George Orwell</p>
+                <p class="book-price">&euro;9.95</p>
+              </article>
+            </li>
+            <li>
+              <article class="book-card">
+                <a class="book-cover" href="#">
+                  <img
+                    src="https://picsum.photos/seed/sapiens/400/600"
+                    alt="Cover of Sapiens, by Yuval Noah Harari"
+                    width="400"
+                    height="600"
+                    loading="lazy"
+                  />
+                </a>
+                <h3 class="book-title"><a href="#">Sapiens</a></h3>
+                <p class="book-author">Yuval Noah Harari</p>
+                <p class="book-price">&euro;24.90</p>
+              </article>
+            </li>
+          </ul>
+        </div>
       </section>
 
-      <!-- Categories -->
-      <section class="categories" aria-labelledby="categories-title">
-        <h2 id="categories-title">Browse by category</h2>
-        <ul class="category-list">
-          <li><a href="#">Fiction</a></li>
-          <li><a href="#">Non-fiction</a></li>
-          <li><a href="#">Science fiction and fantasy</a></li>
-          <li><a href="#">Children's</a></li>
-        </ul>
+      <!-- Physical store: opening hours -->
+      <section class="store-info" aria-labelledby="store-info-title">
+        <div class="container">
+          <h2 id="store-info-title">Bookstore Page — opening hours</h2>
+          <dl class="opening-hours">
+            <dt>Mon–Fri</dt>
+            <dd>9:00 – 20:30</dd>
+            <dt>Sat</dt>
+            <dd>9:00 – 20:00</dd>
+            <dt>Sun</dt>
+            <dd>13:00 – 16:00</dd>
+          </dl>
+        </div>
       </section>
     </main>
 
     <!-- Page footer -->
-    <footer>
-      <p>&copy; 2026 Bookstore Page. All rights reserved.</p>
-      <nav aria-label="Footer links">
-        <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Terms and conditions</a></li>
-          <li><a href="#">Privacy policy</a></li>
-        </ul>
-      </nav>
+    <footer class="site-footer">
+      <div class="container">
+        <p class="copyright">&copy; 2026 Bookstore Page. All rights reserved.</p>
+        <address>Owl Street 11 · 10115 Emerald City</address>
+      </div>
     </footer>
   </body>
 </html>

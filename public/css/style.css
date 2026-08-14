@@ -1,20 +1,25 @@
 /* ==========================================================================
    Bookstore Page — Epic 1 styles
    Visual identity, responsive layout and card design for the home page.
+   All the layout in this file is built with flexbox.
    ========================================================================== */
 
 /* --- Design tokens --- */
 :root {
-  --color-primary: #6b2737;
-  --color-primary-dark: #4f1c29;
-  --color-accent: #c08a2e;
-  --color-bg: #faf7f2;
+  --color-ink: #24435c; /* navy: headings and strong text */
+  --color-primary: #7d2440; /* wine: prices and accents */
+  --color-primary-dark: #5c1a2f;
+  --color-accent: #c08a2e; /* gold: hover and focus feedback */
+  --color-band: #a6c8dd; /* light blue: hero band */
+  --color-promo: #f5d7de; /* soft pink: announcement bubble */
+  --color-bg: #fbf8f1;
   --color-surface: #ffffff;
   --color-text: #2b2420;
   --color-text-muted: #6b6259;
   --color-border: #e6ddd0;
 
-  --font-heading: Georgia, "Times New Roman", serif;
+  /* The wordmark keeps the serif; everything else uses the sans. */
+  --font-logo: Georgia, "Times New Roman", serif;
   --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --space-xs: 0.5rem;
@@ -23,9 +28,14 @@
   --space-lg: 2.5rem;
   --space-xl: 4rem;
 
+  /* Horizontal space between two book cards. It is used both in the gap and
+     in the width calculation below, so changing it here keeps them in sync. */
+  --book-gap: 1.5rem;
+
   --radius: 8px;
+  --radius-lg: 16px;
   --shadow: 0 2px 8px rgba(43, 36, 32, 0.08);
-  --shadow-hover: 0 6px 16px rgba(43, 36, 32, 0.15);
+  --shadow-hover: 0 10px 22px rgba(43, 36, 32, 0.18);
 }
 
 /* --- Reset & base --- */
@@ -44,8 +54,9 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--font-heading);
+  color: var(--color-ink);
   line-height: 1.2;
+  letter-spacing: -0.01em;
   margin: 0 0 var(--space-sm) 0;
 }
 
@@ -70,168 +81,266 @@ ul {
   padding: 0;
 }
 
-header,
-main,
-footer {
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Shared layout container: centres the content and limits its width.
+   Sections stay full-width so their background can span the whole screen,
+   while the text inside them stays aligned with the rest of the page. */
+.container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: var(--space-md) var(--space-sm);
+  padding: 0 var(--space-sm);
 }
 
 /* --- Header --- */
-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  border-bottom: 1px solid var(--color-border);
+.site-header {
+  padding: var(--space-md) 0;
 }
 
-header h1 {
-  font-size: 1.75rem;
-  color: var(--color-primary);
+.logo {
+  font-family: var(--font-logo);
+  font-size: 1.9rem;
+  letter-spacing: 0.02em;
   margin: 0;
 }
 
-header nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-}
-
-header nav a {
-  font-weight: 600;
-}
-
 /* --- Section headings --- */
-main section {
-  margin: var(--space-xl) 0;
-}
-
 main h2 {
-  display: inline-block;
   font-size: 1.5rem;
-  color: var(--color-primary-dark);
-  padding-bottom: var(--space-xs);
-  border-bottom: 3px solid var(--color-accent);
   margin-bottom: var(--space-md);
 }
 
-/* --- Hero / welcome --- */
-.hero p {
-  max-width: 60ch;
-  color: var(--color-text-muted);
+.featured-books,
+.store-info {
+  padding: var(--space-lg) 0;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.65rem 1.5rem;
+/* --- Hero band --- */
+/* The band is a full-width strip of colour; the .container inside keeps the
+   text aligned with the rest of the page. */
+.hero {
+  background-color: var(--color-band);
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin: 0 auto;
+}
+
+/* --- Announcement bubble --- */
+.promo {
+  padding: var(--space-lg) var(--space-sm) var(--space-md);
+  text-align: center;
+}
+
+.promo-bubble {
+  position: relative; /* anchor for the pointer drawn with ::after */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  max-width: 40rem;
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-promo);
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* The little tail under the bubble: a square with only the top border
+   painted, which the browser renders as a triangle. */
+.promo-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 14px solid transparent;
+  border-top-color: var(--color-promo);
+  border-bottom: 0;
+}
+
+.promo-badge {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-primary);
+  border-radius: 50%;
   color: #fff;
-  border-radius: var(--radius);
-  font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-size: 1.1rem;
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: var(--color-accent);
-  color: #fff;
-  transform: translateY(-2px);
+/* --- Featured books: row of cards --- */
+/* The list is a flex row that wraps. Each item gets an exact width, so a row
+   always holds the same number of cards: four here, two or one further down
+   in the media queries. Never a half-empty row of three. */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg) var(--book-gap);
 }
 
-/* --- Featured books: card grid --- */
-.book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-md);
+/* Four per row: subtract the three gaps between them, then divide by four.
+   `flex: 0 0 <width>` means "do not grow, do not shrink, use this width". */
+.book-list > li {
+  flex: 0 0 calc((100% - 3 * var(--book-gap)) / 4);
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: var(--color-surface);
+}
+
+/* The cover keeps a fixed 2:3 shape whatever the image's real proportions
+   are, so every card in the row lines up. */
+.book-cover {
+  display: block;
+  margin-bottom: var(--space-sm);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
   box-shadow: var(--shadow);
+  overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.book-card:hover {
+.book-cover img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.book-cover:hover,
+.book-cover:focus {
   box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
 }
 
-.book-card h3 {
-  font-size: 1.15rem;
+.book-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.15rem;
+}
+
+.book-title a {
+  color: var(--color-ink);
+}
+
+.book-title a:hover,
+.book-title a:focus {
+  color: var(--color-primary);
 }
 
 .book-author {
   color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
 }
 
 .book-price {
   color: var(--color-primary);
   font-weight: 700;
-  margin-top: auto;
+  margin: 0;
 }
 
-.book-link {
-  align-self: flex-start;
-  font-weight: 600;
+/* --- Opening hours --- */
+.store-info .container {
+  border-top: 3px solid var(--color-ink);
+  padding-top: var(--space-lg);
 }
 
-/* --- Categories --- */
-.category-list {
+/* Another wrapping flex row: the day and its times always add up to 100%,
+   so each pair takes a line of its own. */
+.opening-hours {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  row-gap: var(--space-xs);
+  max-width: 22rem;
+  margin: 0;
 }
 
-.category-list a {
-  display: inline-block;
-  padding: 0.5rem 1.1rem;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  color: var(--color-text);
-  font-weight: 600;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+.opening-hours dt {
+  flex: 0 0 6rem;
+  font-weight: 700;
+  color: var(--color-ink);
 }
 
-.category-list a:hover,
-.category-list a:focus {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
+.opening-hours dd {
+  flex: 0 0 calc(100% - 6rem);
+  margin: 0;
+  color: var(--color-text-muted);
 }
 
 /* --- Footer --- */
-footer {
+.site-footer {
   border-top: 1px solid var(--color-border);
+  margin-top: var(--space-lg);
+  padding: var(--space-md) 0 var(--space-lg);
   color: var(--color-text-muted);
   font-size: 0.9rem;
-  padding-bottom: var(--space-lg);
 }
 
-footer nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-xs);
+.copyright {
+  margin-bottom: 0.15rem;
+}
+
+.site-footer address {
+  font-style: normal;
+}
+
+/* --- Responsive: two books per row --- */
+@media (max-width: 900px) {
+  /* Once the cards stop growing, the pair no longer fills the row, so centre
+     them instead of leaving all the spare space on one side. */
+  .book-list {
+    justify-content: center;
+  }
+
+  /* Two per row: subtract the single gap between them and halve the rest.
+     The max-width stops the two covers from growing huge at the wide end of
+     this range; a third card still needs half the row, so it always wraps. */
+  .book-list > li {
+    flex: 0 0 calc((100% - var(--book-gap)) / 2);
+    max-width: 22rem;
+  }
 }
 
 /* --- Responsive: small screens --- */
 @media (max-width: 640px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+  .site-header {
+    text-align: center;
   }
 
-  .book-grid {
-    grid-template-columns: 1fr;
+  .hero {
+    padding: var(--space-lg) 0;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .promo-bubble {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    font-size: 1rem;
+  }
+}
+
+/* --- Responsive: phones --- */
+@media (max-width: 480px) {
+  /* One per row, fluid: the cover uses the full width of the screen. */
+  .book-list > li {
+    flex: 0 0 100%;
+    max-width: none;
   }
 }
