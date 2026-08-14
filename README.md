@@ -115,5 +115,11 @@ _Pending — the screenshot will be added when the epic is closed._
 
 ## Documents
 
-- [BACKLOG.md](docs/BACKLOG.md) — user stories per epic.
-- [STUDY-GUIDE.md](docs/STUDY-GUIDE.md) — study guide.
+Three documents answer three different questions about each epic:
+
+- [backlog/](docs/backlog/README.md) — **what** the customer gets: user stories and
+  acceptance criteria. One document per epic, named after its tag.
+- [study-guide/](docs/study-guide/README.md) — **what to learn** before building an epic.
+  One document per epic, named after its tag.
+- [tech-spec/](docs/tech-spec/README.md) — **how** an increment is built and why. One
+  document per epic, from Epic 2 onward.

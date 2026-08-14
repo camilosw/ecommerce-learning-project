@@ -43,9 +43,18 @@ leave the site as a functional, self-contained version.
 Each epic produces:
 
 1. The **reference code** for the increment.
-2. The corresponding **user stories** (format: _As a [role], I want to
-   [action] so that [benefit]_), ready to paste into the Trello backlog.
-3. A **commit** and a **tag** `epic-N-name` (e.g. `epic-1-home`).
+2. The corresponding **user stories** with acceptance criteria (format: _As a [role], I
+   want to [action] so that [benefit]_), written in `docs/backlog/epic-N-name.md` and
+   ready to paste into the Trello backlog.
+3. A **study guide** `docs/study-guide/epic-N-name.md` — what the student must learn to
+   build *this* increment, with a free tutorial and reference link per topic.
+4. A **tech spec** `docs/tech-spec/epic-N-name.md` — how the increment is built and why:
+   file layout, contracts between files, decisions taken and rejected, what is left out
+   for later epics, and a story-to-file traceability table.
+5. A **screenshot** `docs/screenshots/epic-N-name.png`, linked from the README preview.
+6. A **commit** and a **tag** `epic-N-name` (e.g. `epic-1-home`).
+
+Documents 2–5 are all named after the epic's tag.
 
 ## Version control
 

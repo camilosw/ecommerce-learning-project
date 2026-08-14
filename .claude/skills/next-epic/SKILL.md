@@ -39,18 +39,33 @@ The human is the Product Manager; Claude generates the reference solution.
        - (at least two criteria per story)
    ```
 
-   Follow the exact format used in `docs/BACKLOG.md` (plain declarative sentences,
-   no Gherkin/BDD syntax). Update `docs/BACKLOG.md` with the new stories and criteria.
+   Follow the exact format used by the existing epic files (plain declarative sentences,
+   no Gherkin/BDD syntax). Write them to `docs/backlog/epic-N-name.md` (file name = the
+   epic tag) — the outlined stories for the epic are already there, so replace them with
+   the full stories and their criteria — and keep the story count in the table in
+   `docs/backlog/README.md` correct. If this epic changes a criterion accepted in an
+   earlier epic, leave the earlier story text intact with an _Amended in Epic N_ note and
+   list the change under "Amendments to earlier epics" in this epic's file.
 
-5. **Append the study topics.** Add a `## Epic N — Name` section to
-   `docs/STUDY-GUIDE.md`, mirroring the structure of the existing Epic 1
-   section. List the concepts the student must learn to build *this* increment —
-   derive them from the reference code you just wrote, never from future
-   epics. For each topic give a short explanation, *why* it's needed in
-   this epic, and two free resource links (MDN as the authoritative
-   reference, W3Schools as the beginner-friendly tutorial).
+5. **Write the study guide.** Create `docs/study-guide/epic-N-name.md` (file name =
+   the epic tag), mirroring the structure of the existing per-epic guides, and add
+   its row to `docs/study-guide/README.md`. List the concepts the student must
+   learn to build *this* increment — derive them from the reference code you just
+   wrote, never from future epics. For each topic give a short explanation, *why*
+   it's needed in this epic, and two free resource links: W3Schools as the
+   beginner-friendly tutorial, and the authoritative reference — MDN for the web
+   platform, php.net for PHP, mariadb.com/kb for the database.
 
-6. **Capture the screenshot.** Remind the PM to take a screenshot of the rendered
+6. **Write the tech spec.** Create `docs/tech-spec/epic-N-name.md` (file name = the
+   epic tag) and add its row to `docs/tech-spec/README.md`. Where the backlog says
+   *what* the customer gets and the study guide says *what to learn*, the spec records
+   *how the increment is built and why*: scope and an explicit out-of-scope table
+   pointing at the epics that will cover each item, file layout, the contracts between
+   files, decisions taken **and rejected** with their rationale, and a table mapping
+   each story to the files that satisfy it. Note any amendment this epic makes to an
+   earlier epic's accepted criteria.
+
+7. **Capture the screenshot.** Remind the PM to take a screenshot of the rendered
    increment and save it as `docs/screenshots/epic-N-name.png` (file name = the
    epic tag; see `docs/screenshots/README.md` for the convention). Then, in the
    README "Epic previews" section (paths there are relative to the repo root,
@@ -58,7 +73,7 @@ The human is the Product Manager; Claude generates the reference solution.
    the image, using a descriptive `alt`. The screenshot is part of the epic
    deliverable.
 
-7. **Propose the close.** Suggest the commit message and the tag
+8. **Propose the close.** Suggest the commit message and the tag
    `epic-N-name` (e.g. `epic-2-pages`). Do not execute irreversible
    git actions without user confirmation.
 
