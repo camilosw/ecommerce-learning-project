@@ -1,117 +1,7 @@
 /* ==========================================================================
-   Bookstore Page — Epic 1 styles
-   Visual identity, responsive layout and card design for the home page.
-   All the layout in this file is built with flexbox.
+   Bookstore Page — home
+   index.php only: hero, announcement, featured books, opening-hours section.
    ========================================================================== */
-
-/* --- Design tokens --- */
-:root {
-  --color-ink: #24435c; /* navy: headings and strong text */
-  --color-primary: #7d2440; /* wine: prices and accents */
-  --color-primary-dark: #5c1a2f;
-  --color-accent: #c08a2e; /* gold: hover and focus feedback */
-  --color-band: #a6c8dd; /* light blue: hero band */
-  --color-promo: #f5d7de; /* soft pink: announcement bubble */
-  --color-bg: #fbf8f1;
-  --color-surface: #ffffff;
-  --color-text: #2b2420;
-  --color-text-muted: #6b6259;
-  --color-border: #e6ddd0;
-
-  /* The wordmark keeps the serif; everything else uses the sans. */
-  --font-logo: Georgia, "Times New Roman", serif;
-  --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 4rem;
-
-  /* Horizontal space between two book cards. It is used both in the gap and
-     in the width calculation below, so changing it here keeps them in sync. */
-  --book-gap: 1.5rem;
-
-  --radius: 8px;
-  --radius-lg: 16px;
-  --shadow: 0 2px 8px rgba(43, 36, 32, 0.08);
-  --shadow-hover: 0 10px 22px rgba(43, 36, 32, 0.18);
-}
-
-/* --- Reset & base --- */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.6;
-}
-
-h1,
-h2,
-h3 {
-  color: var(--color-ink);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin: 0 0 var(--space-sm) 0;
-}
-
-p {
-  margin: 0 0 var(--space-sm) 0;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover,
-a:focus {
-  color: var(--color-accent);
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-/* Shared layout container: centres the content and limits its width.
-   Sections stay full-width so their background can span the whole screen,
-   while the text inside them stays aligned with the rest of the page. */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 var(--space-sm);
-}
-
-/* --- Header --- */
-.site-header {
-  padding: var(--space-md) 0;
-}
-
-.logo {
-  font-family: var(--font-logo);
-  font-size: 1.9rem;
-  letter-spacing: 0.02em;
-  margin: 0;
-}
-
-/* --- Section headings --- */
-main h2 {
-  font-size: 1.5rem;
-  margin-bottom: var(--space-md);
-}
 
 .featured-books,
 .store-info {
@@ -127,7 +17,7 @@ main h2 {
   text-align: center;
 }
 
-.hero h2 {
+.hero h1 {
   font-size: 2rem;
   margin: 0 auto;
 }
@@ -252,49 +142,10 @@ main h2 {
   margin: 0;
 }
 
-/* --- Opening hours --- */
+/* --- Opening hours section --- */
 .store-info .container {
   border-top: 3px solid var(--color-ink);
   padding-top: var(--space-lg);
-}
-
-/* Another wrapping flex row: the day and its times always add up to 100%,
-   so each pair takes a line of its own. */
-.opening-hours {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: var(--space-xs);
-  max-width: 22rem;
-  margin: 0;
-}
-
-.opening-hours dt {
-  flex: 0 0 6rem;
-  font-weight: 700;
-  color: var(--color-ink);
-}
-
-.opening-hours dd {
-  flex: 0 0 calc(100% - 6rem);
-  margin: 0;
-  color: var(--color-text-muted);
-}
-
-/* --- Footer --- */
-.site-footer {
-  border-top: 1px solid var(--color-border);
-  margin-top: var(--space-lg);
-  padding: var(--space-md) 0 var(--space-lg);
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.copyright {
-  margin-bottom: 0.15rem;
-}
-
-.site-footer address {
-  font-style: normal;
 }
 
 /* --- Responsive: two books per row --- */
@@ -316,15 +167,11 @@ main h2 {
 
 /* --- Responsive: small screens --- */
 @media (max-width: 640px) {
-  .site-header {
-    text-align: center;
-  }
-
   .hero {
     padding: var(--space-lg) 0;
   }
 
-  .hero h2 {
+  .hero h1 {
     font-size: 1.5rem;
   }
 

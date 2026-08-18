@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Bookstore Page — layout
+   The site chrome shared by every page: header, both menus, footer.
+   ========================================================================== */
+
+/* --- Header --- */
+/* Store name on the left, main menu on the right; wraps to a stacked,
+   centred layout once the row no longer fits (see the media query below). */
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.site-header {
+  padding: var(--space-md) 0;
+}
+
+.site-title {
+  font-family: var(--font-logo);
+  font-size: 1.9rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.site-title a {
+  color: var(--color-ink);
+}
+
+/* --- Menus --- */
+/* Both the main menu and the footer menu are flex rows that wrap, so a
+   narrow screen never causes horizontal scrolling. */
+.main-nav ul,
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+}
+
+/* Selecting the attribute rather than a class means the visual highlight and
+   the screen-reader announcement can never drift apart. */
+nav a[aria-current="page"] {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+/* --- Footer --- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-lg);
+  padding: var(--space-md) 0 var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-nav {
+  margin-bottom: var(--space-md);
+}
+
+.copyright {
+  margin-bottom: 0.15rem;
+}
+
+.site-footer address {
+  font-style: normal;
+}
+
+/* --- Responsive: small screens --- */
+@media (max-width: 640px) {
+  .site-header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-nav ul {
+    justify-content: center;
+  }
+}

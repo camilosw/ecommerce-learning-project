@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Bookstore Page — base
+   Design tokens, reset, and base element rules shared by every page.
+   ========================================================================== */
+
+/* --- Design tokens --- */
+:root {
+  --color-ink: #24435c; /* navy: headings and strong text */
+  --color-primary: #7d2440; /* wine: prices and accents */
+  --color-primary-dark: #5c1a2f;
+  --color-accent: #c08a2e; /* gold: hover and focus feedback */
+  --color-band: #a6c8dd; /* light blue: hero band */
+  --color-promo: #f5d7de; /* soft pink: announcement bubble */
+  --color-bg: #fbf8f1;
+  --color-surface: #ffffff;
+  --color-text: #2b2420;
+  --color-text-muted: #6b6259;
+  --color-border: #e6ddd0;
+
+  /* The wordmark keeps the serif; everything else uses the sans. */
+  --font-logo: Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Horizontal space between two book cards. It is used both in the gap and
+     in the width calculation below, so changing it here keeps them in sync. */
+  --book-gap: 1.5rem;
+
+  --radius: 8px;
+  --radius-lg: 16px;
+  --shadow: 0 2px 8px rgba(43, 36, 32, 0.08);
+  --shadow-hover: 0 10px 22px rgba(43, 36, 32, 0.18);
+}
+
+/* --- Reset & base --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-ink);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+p {
+  margin: 0 0 var(--space-sm) 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-accent);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Shared layout container: centres the content and limits its width.
+   Sections stay full-width so their background can span the whole screen,
+   while the text inside them stays aligned with the rest of the page. */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+/* --- Section headings --- */
+main h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+}

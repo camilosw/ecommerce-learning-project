@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Bookstore Page — components
+   Design used by more than one page.
+   ========================================================================== */
+
+/* --- Page intro: <h1> plus lead paragraph, shared by the content pages --- */
+.page-intro {
+  padding: var(--space-lg) 0 var(--space-md);
+}
+
+.page-intro h1 {
+  font-size: 2rem;
+}
+
+.page-intro p {
+  max-width: 60ch;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+/* --- Prose: readable measure for body copy --- */
+.prose {
+  max-width: 70ch;
+  padding-bottom: var(--space-lg);
+}
+
+.prose h2 {
+  margin-top: var(--space-lg);
+  font-size: 1.25rem;
+}
+
+/* The global reset strips list style from every <ul>; restore it here so a
+   bullet list inside body copy still reads as a list. */
+.prose ul {
+  list-style: disc;
+  padding-left: var(--space-md);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.prose ul li {
+  margin-bottom: 0.25rem;
+}
+
+/* --- Opening hours: used on the home page and the contact page --- */
+.opening-hours {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--space-xs);
+  max-width: 22rem;
+  margin: 0;
+}
+
+.opening-hours dt {
+  flex: 0 0 6rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.opening-hours dd {
+  flex: 0 0 calc(100% - 6rem);
+  margin: 0;
+  color: var(--color-text-muted);
+}

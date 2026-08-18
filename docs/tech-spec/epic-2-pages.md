@@ -304,7 +304,10 @@ highlight and the screen-reader announcement can never drift apart. The `class="
 is emitted alongside it as a conventional hook, but carries no styling of its own.
 
 Epic 1's rules are redistributed unchanged — the split moves CSS between files, it does not
-rewrite it. The one edit is `.hero h2` becoming `.hero h1`, which follows from §7.
+rewrite it — with two exceptions. `.hero h2` becomes `.hero h1`, which follows from §7.
+`.site-header` gains a flex layout so the store name sits on the left and the main menu on
+the right on desktop (PM decision made during this epic's review), wrapping to a centred,
+stacked column below 640px so the mobile layout is unchanged.
 
 **Flexbox only, still.** Epic 1 chose flexbox as the single layout tool because CSS Grid is
 not yet in the student's toolbox, and nothing in this epic teaches it — so the menus and

@@ -13,14 +13,15 @@ prepared statements. No framework, no Composer.
 
 ## Running locally
 
-The web root is the `public/` folder, so serve the site pointing at it:
+The web root is the `src/public/` folder, so serve the site pointing at it:
 
 ```bash
-php -S localhost:8000 -t public
+php -S localhost:8000 -t src/public
 ```
 
-Then open <http://localhost:8000>. Keeping `public/` as the document root means
-files outside it (database connection, configuration) are never reachable by URL.
+Then open <http://localhost:8000>. Keeping `src/public/` as the document root means
+files outside it (the shared includes, and later the database connection and
+configuration) are never reachable by URL.
 
 ## Epics
 
@@ -69,7 +70,14 @@ each epic is closed.
 
 > What the student must build: the secondary pages (catalog, contact, about…) sharing a reusable header and footer via PHP `include` (first PHP).
 
-_Pending — the screenshot will be added when the epic is closed._
+![Bookstore home page rebuilt in PHP, now with a main menu (Home, Catalog, About us, Contact, Cart) under the store name and a footer menu (About us, Terms and conditions) above the copyright and address](docs/screenshots/epic-2-pages.png)
+
+<details>
+<summary>Mobile view</summary>
+
+![Bookstore home page on a narrow mobile viewport, with the main menu wrapping under the centred wordmark](docs/screenshots/epic-2-pages-mobile.png)
+
+</details>
 
 ### Epic 3 — Product listing
 
