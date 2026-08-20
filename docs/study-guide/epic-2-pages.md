@@ -135,9 +135,15 @@ page is meaningless without its header, this project uses `require`.
 rather than to wherever PHP happens to be running, which is what makes the include work
 reliably.
 
+One detail that is easy to miss: the included file **shares the variables** of the file
+that required it. That is why every page assigns `$page_title`, `$current_page` and
+`$page_css` *before* the `require` — when `header.php` runs, it can already read them.
+Assigning them afterwards would be too late, because the `<head>` has already been written.
+
 - W3Schools: <https://www.w3schools.com/php/php_includes.asp>
 - PHP manual: <https://www.php.net/manual/en/function.require.php> ·
-  <https://www.php.net/manual/en/language.constants.magic.php>
+  <https://www.php.net/manual/en/language.constants.magic.php> ·
+  <https://www.php.net/manual/en/language.variables.scope.php>
 
 ## 9. `htmlspecialchars()` — escaping output
 

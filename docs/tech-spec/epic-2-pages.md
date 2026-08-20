@@ -108,11 +108,49 @@ require __DIR__ . '/../includes/header.php';
 | `$current_page` | page            | `header.php`, `footer.php`| matches a menu key to mark the active link     |
 | `$page_css`     | page (optional) | `header.php`              | loads `css/$page_css.css` for this page alone  |
 
-`$page_css` is the only optional one. `header.php` emits its `<link>` inside an
-`isset()` check, so a page with no styles of its own — `about.php`, `terms.php` — simply
-does not set the variable and no stylesheet is requested. Pages set it as a bare name
-(`'home'`), not a path or a filename, so the folder and the extension are decided in one
-place.
+All three are plain variables, and that is the whole mechanism: `require` does **not** open
+a new scope. The required file is executed inside the scope of the page that required it,
+so by the time `header.php` runs, the variables the page just assigned already exist and it
+can simply read them. This is also why they are assigned *before* the `require` — setting
+`$page_css` after that line would have no effect, because the `<head>` has already been
+written and sent.
+
+### Loading a page's own stylesheet
+
+`$page_css` is the only optional variable. This is what `header.php` prints inside its
+`<head>`:
+
+```php
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/components.css" />
+<?php if (isset($page_css)): ?>
+<link rel="stylesheet" href="css/<?= htmlspecialchars($page_css) ?>.css" />
+<?php endif; ?>
+```
+
+The three shared stylesheets are unconditional. The fourth `<link>` exists only when the
+page set the variable, and its filename is built from the value:
+
+| Page          | Sets `$page_css` | Fourth `<link>` printed |
+| ------------- | ---------------- | ----------------------- |
+| `index.php`   | `'home'`         | `css/home.css`          |
+| `contact.php` | `'contact'`      | `css/contact.css`       |
+| `about.php`   | — not set        | none                    |
+| `terms.php`   | — not set        | none                    |
+
+Read the whole path for `contact.php`: the page assigns `$page_css = 'contact'`, requires
+the header, the header finds the variable set, `htmlspecialchars($page_css)` prints
+`contact` between `css/` and `.css`, and the browser requests `css/contact.css`.
+
+The `isset()` check is what lets a page opt out. `about.php` and `terms.php` have no styles
+of their own, so they never set the variable, no fourth `<link>` is printed, and the browser
+requests nothing that does not exist — without the check, PHP would warn about an
+undefined variable and both pages would ask for `css/.css`, taking a 404.
+
+Pages set the value as a bare name (`'home'`), not a path and not a filename, so the folder
+and the extension are decided in one place: the line above. §9 covers what goes in each
+stylesheet, and why their order is fixed here rather than left to each page.
 
 **Considered and rejected:** deriving the stylesheet name from `$current_page`, which
 would need no new variable at all. It would force *every* page to own a stylesheet — the
@@ -259,17 +297,18 @@ point where a beginner can still find anything in it.
 | `base.css`       | every page    | design tokens, reset, base element rules, `.container`, `main h2` |
 | `layout.css`     | every page    | `.site-header`, `.site-title`, `.main-nav`, `.footer-nav`, `.site-footer` |
 | `components.css` | every page    | `.page-intro`, `.prose`, `.opening-hours`                     |
-| `home.css`       | `index.php`   | `.hero`, `.promo*`, `.book-list`, `.book-card`, `.book-cover`, `.store-info` |
-| `contact.css`    | `contact.php` | `.contact-layout`, `.contact-details`, `.map-embed`           |
+| `home.css`       | `index.php` via `$page_css`   | `.hero`, `.promo*`, `.book-list`, `.book-card`, `.book-cover`, `.store-info` |
+| `contact.css`    | `contact.php` via `$page_css` | `.contact-layout`, `.contact-details`, `.map-embed`           |
 
 `about.php` and `terms.php` get no stylesheet of their own: everything they need is in the
 three shared files. A per-page file is created when the page has something to put in it,
 not for symmetry.
 
-**Load order is cascade order.** The four `<link>` tags are emitted in the order above, so
-a rule in a later file wins over the same rule in an earlier one — the page's own
-stylesheet loads last and can override anything shared. This is the reason the order is
-fixed in `header.php` rather than left to whoever adds the next page.
+**Load order is cascade order.** `header.php` prints the three shared stylesheets in the
+order above and the page's own one — when there is one — last (§4 shows the block), so a
+rule in a later file wins over the same rule in an earlier one: a page can override
+anything shared, never the other way round. This is the reason the order is fixed in
+`header.php` rather than left to whoever adds the next page.
 
 **Why `layout.css` is its own file.** It styles exactly what the two partials in
 `src/includes/` print, and nothing else. The markup for the site chrome lives in one place
